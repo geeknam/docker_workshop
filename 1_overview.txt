@@ -1,0 +1,23 @@
+
+Docker architechture:
+- Docker daemon: builds, runs, distribute containers
+- Docker daemon runs on a host (needs LXC)
+- Docker client: CLI, issues commands to daemon, communication via sockets or RESTful API
+- Client / server architecture, communication over unix sockets or tcp, security via TLS
+
+
+Docker Components:
+- Docker images: a template to build containers like OOP classes
+- Docker registries: place to hold images, Docker Hub is SasS offering for docker images,
+it's like what Github is to code
+- Docker containers: holds what is needed for an application to run, is isolated. Like instantiated objects
+
+Typical Docker flow:
+1. Pull image from registry
+2. Creates the container from the pulled image
+3. Allocate file system
+4. Allocate network interface
+5. Runs the process
+6. Streams logs std output
+
+

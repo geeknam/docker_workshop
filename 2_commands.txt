@@ -1,0 +1,74 @@
+
+Docker commands:
+
+- docker ps: show running containers
+
+- docker images: available images? why so many images with the same size?
+
+- docker pull {{image}}:{{tag}} : pull an image on host
+    
+    > docker pull busybox:latest
+    > docker pull busybox:ubuntu-12.04
+
+- docker create: creates a container, prepares for running
+    
+    > docker create busybox (note down the hash)
+    > docker ps ---> why not showing?
+    > docker ps -l (show non running, last created)
+
+- docker run: run a command in the container
+
+    - API /containers/create/
+    - API /containers/{{id}}/run
+    
+    > docker run -it busybox
+    > docker run -it busybox sh
+    > docker run -d {{ image }} -> detached mode
+
+- docker rm: remove container
+    
+    > docker rm {{container_id}}
+    > docker rm {{container_id}} -f
+
+- docke rmi: remove image
+    
+    > docker rm busybox (do not do it now)
+
+- docker commit {{container_id}} {{image_name}}
+
+    > docker run -it busybox
+    > echo 'test' > kogan.txt
+    > exit
+    > docker ps -l (get container id)
+    > docker commit {{container_id}} koganimage
+    > docker run -it koganimage
+    > ls
+
+- docker diff {{container_id}}
+
+    > docker ps -l
+    > docker diff {{container_id}}
+
+- docker attach {{container_id}}
+    
+    Fire up 2 terminal sessions
+    (1) > docker run busybox sh -c "while true; do echo hello world; sleep 1; done"
+    (2) > docker ps (note down container id)
+    (2) > docker attach {{container_id}}
+
+- docker exec {{container_id}} command: run a command in a running container
+    
+    Fire up 2 terminal sessions
+    (1) > docker run busybox sh -c "while true; do echo hello world; sleep 1; done"
+    (2) > docker ps (note down container id)
+    (2) > docker attach {{container_id}} sh
+    (2) > ps
+    (2) > kill -9 {{pid}} ----> ???
+    (2) > docker kill {{container_id}}
+
+- docker stats {{container_id}}: streams container's resource usage
+
+- docker search {{keyword}}: searches on DockerHub for docker image
+
+- docker cp container_id:/path/to/file /host/path
+

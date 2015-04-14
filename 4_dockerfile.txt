@@ -1,0 +1,47 @@
+
+
+Dockerfiles - file containing sets of commands to automatically build an image
+
+Building image: docker build
+- Build process is run by Docker daemon
+- Daemon steps through and commits the result to the new image
+
+
+
+- FROM {{image}} - sets base image
+
+- RUN
+
+    RUN <command> (always assumes /bin/sh -c)
+    RUN ["executable", "param1", "param2"]
+    
+    - Executes command in a new layer on top of the current image and commits
+    - Like git commits, source control
+    - Tips: chain as many commands
+
+    FROM busybox
+    RUN echo "test" > kogan.text
+
+- CMD
+
+    CMD <command> (always assumes /bin/sh -c)
+    CMD ["executable", "param1", "param2"]
+
+    - Provide defaults for executing container
+    - Executed when running the image
+    - Does not get saved within the image
+    - Does not execute at build time
+
+
+- EXPOSE: defines which the container will listen on
+
+- ENV key=value: sets env variables
+
+- ADD {{src}} {{dest}}: adds file to filesystem of the container
+
+
+- ENTRYPOINT
+    
+    ENTRYPOINT ["executable", "param1", "param2"]
+
+    - Configure container to run as an executable

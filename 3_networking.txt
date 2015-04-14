@@ -1,0 +1,32 @@
+
+
+Random port mapping:
+
+    > docker run -d -P training/webapp python app.py
+
+    - Expose container port 8000 to randon port 49153 to 65535 on host
+
+
+Bind to specific port:
+    
+    > docker run -d -p 5000:5000 training/webapp python app.py
+
+    - Binds container port 5000 to host port 5000
+    - Why is it not a good idea?
+
+
+Container links:
+    
+    > docker run -d --name db training/postgres
+    > docker run -d -P --name web --link db:db training/webapp python app.py
+
+        - web can not access db
+        - Docker creates secure channel between containers, without exposing ports
+        - Achieved with ENV variables + updating /etc/hosts file
+        - Go to web container and find out yourself? Remember how to?
+
+        > apt-get install ping
+        > ping db
+
+
+

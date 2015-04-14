@@ -1,0 +1,12 @@
+Creates Docker hosts on cloud providers:
+
+1. Provisions the server/vm (ec2 isntance, digital ocean droplet)
+2. Installs Docker daemon
+3. Configures Docker CLI locally 
+
+
+> docker-machine ls
+
+> docker-machine create --driver virtualbox dev
+
+> docker-machine create --driver digitalocean --digitalocean-access-token 9feb1a00792f45e08534b3df1acbfa1ea25f9902a5de1bd58727d98f3db93f1c staging
